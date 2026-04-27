@@ -1,15 +1,19 @@
 import matplotlib.pyplot as plt
 from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
-import tkinter as tk
+import customtkinter
+import tkinter
 from tkinter import Frame
-from tkinter import IntVar
-from tkinter import StringVar
+from customtkinter import IntVar
+from customtkinter import StringVar
 
 darkblue='#274f58'
 rushred='#5c092d'
 whitewords='#cdcdcd'
 steelgrey='#353b45'
 backgroundBlack='#20292f'
+
+customtkinter.set_appearance_mode("dark")
+customtkinter.set_default_color_theme("dark-blue")
 
 
 def MUn(n,s):
@@ -25,7 +29,7 @@ def hitModifier(theDC,theSave):
 
 
 class DamagePlotter:
-    def __init__(self,root):
+    def __init__(self,root,theFont):
         self.root = root
         root.title('Predict Damage Output')
 
@@ -34,36 +38,43 @@ class DamagePlotter:
         self.DiceCount = IntVar()
         self.SidedDice = IntVar()
         self.rollMode = StringVar()
-        
 
-        inputFrame = Frame(self.root)
-        DCinput = tk.Entry(inputFrame,text='DC Input',textvariable=self.DC_var)
-        SaveBonusInput = tk.Entry(inputFrame,text='Save Throw Bonus',textvariable=self.SavingThrow)
-        numberofDiceInput = tk.Entry(inputFrame,text='Number of Dice',textvariable=self.DiceCount)
-        diceSidesInput = tk.Entry(inputFrame,text='Number of Sides',textvariable=self.SidedDice)
+        inputFrame = customtkinter.CTkFrame(master=root)
+        DCinput = customtkinter.CTkEntry(inputFrame,placeholder_text='DC Input',textvariable=self.DC_var)
+        SaveBonusInput = customtkinter.CTkEntry(inputFrame,placeholder_text='Save Throw Bonus',textvariable=self.SavingThrow)
+        numberofDiceInput = customtkinter.CTkEntry(inputFrame,placeholder_text='Number of Dice',textvariable=self.DiceCount)
+        diceSidesInput = customtkinter.CTkEntry(inputFrame,placeholder_text='Number of Sides',textvariable=self.SidedDice)
 
-        attackButton = tk.Checkbutton(inputFrame,text='Saving Throw',variable=self.rollMode,onvalue='Save',offvalue='Attack')
+
+        dclabel = customtkinter.CTkLabel(inputFrame,text="DC or AC",font=theFont)
+        savelabel = customtkinter.CTkLabel(inputFrame,text="Save or Attack Bonus",font=theFont)
+        numberdicelabel = customtkinter.CTkLabel(inputFrame,text='Number of Dice',font=theFont)
+        numbersideslabel = customtkinter.CTkLabel(inputFrame,text='Sides of Dice',font=theFont)
+
+        attackButton = customtkinter.CTkCheckBox(inputFrame,text='Saving Throw',variable=self.rollMode,onvalue='Save',offvalue='Attack')
         attackButton.deselect()
 
-        attackButton.grid(row=1,column=0)
-        DCinput.grid(row=0,column=0)
-        SaveBonusInput.grid(row=0,column=1)
-        numberofDiceInput.grid(row=0,column=2)
-        diceSidesInput.grid(row=0,column=3)
-        
-        
+        attackButton.grid(row=0,column=2)
+        DCinput.grid(row=0,column=1)
+        SaveBonusInput.grid(row=1,column=1)
+        numberofDiceInput.grid(row=2,column=1)
+        diceSidesInput.grid(row=3,column=1)
+
+        dclabel.grid(row=0,column=0)
+        savelabel.grid(row=1,column=0)
+        numberdicelabel.grid(row=2,column=0)
+        numbersideslabel.grid(row=3,column=0)
+
         inputFrame.pack()
 
-        load_button = tk.Button(self.root, text='Generate Odds', command=self.update_plot)
-        load_button.pack(padx=10,pady=10)
+        load_button = customtkinter.CTkButton(self.root, text='Generate Odds', command=self.update_plot)
+        load_button.pack()
 
 
         self.fig, self.ax = plt.subplots()
         self.canvas = FigureCanvasTkAgg(self.fig, master = self.root)
         self.widget = self.canvas.get_tk_widget()
         self.widget.pack(padx=10, pady=10)
-
-        self.df = None
 
     def load_parameters(self):
         pass
@@ -107,6 +118,8 @@ class DamagePlotter:
         self.canvas.draw()
 
 if __name__ == '__main__':
-    root = tk.Tk()
-    app = DamagePlotter(root)
+    root = customtkinter.CTk()
+    root.geometry("800x550")
+    aFont = customtkinter.CTkFont('Helvetica',12)
+    app = DamagePlotter(root,aFont)
     root.mainloop()
