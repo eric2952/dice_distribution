@@ -22,8 +22,7 @@ def numberDistribution(x,sigma,MU):
     return(returnNumber)
 def hitModifier(theDC,theSave):
     return((theDC-theSave-1)/20)
-def close_window():
-    root.destroy()
+
 
 class DamagePlotter:
     def __init__(self,root):
@@ -46,7 +45,6 @@ class DamagePlotter:
         attackButton = tk.Checkbutton(inputFrame,text='Saving Throw',variable=self.rollMode,onvalue='Save',offvalue='Attack')
         attackButton.deselect()
 
-        quitbutton = tk.Button(self.root, text='Quit', command = close_window)
         attackButton.grid(row=1,column=0)
         DCinput.grid(row=0,column=0)
         SaveBonusInput.grid(row=0,column=1)
@@ -64,7 +62,6 @@ class DamagePlotter:
         self.canvas = FigureCanvasTkAgg(self.fig, master = self.root)
         self.widget = self.canvas.get_tk_widget()
         self.widget.pack(padx=10, pady=10)
-        quitbutton.pack()
 
         self.df = None
 
