@@ -10,4 +10,8 @@ RUN apt-get update && apt-get install -y --no-install-recommends tk python3-tk &
 
 COPY distribution.py .
 
+COPY diceCalculations.py .
+
+COPY dmgPlotter.py .
+
 CMD ["python3", "distribution.py"]
