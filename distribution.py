@@ -1,8 +1,6 @@
 import matplotlib.pyplot as plt
 from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
 import customtkinter
-import tkinter
-from tkinter import Frame
 from customtkinter import IntVar
 from customtkinter import StringVar
 

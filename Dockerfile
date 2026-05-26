@@ -1,0 +1,13 @@
+FROM python:3.12
+
+WORKDIR /app
+
+COPY requirements.txt .
+
+RUN pip install -r requirements.txt
+
+RUN apt-get update && apt-get install -y --no-install-recommends tk python3-tk && rm -rf /var/lib/apt/lists/*
+
+COPY distribution.py .
+
+CMD ["python3", "distribution.py"]
