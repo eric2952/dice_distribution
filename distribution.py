@@ -3,6 +3,8 @@ from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
 import customtkinter
 from customtkinter import IntVar
 from customtkinter import StringVar
+import diceCalculations
+from diceCalculations import *
 
 darkblue='#274f58'
 rushred='#5c092d'
@@ -14,6 +16,7 @@ customtkinter.set_appearance_mode("dark")
 customtkinter.set_default_color_theme("dark-blue")
 
 
+'''
 def MUn(n,s):
     return(.5*n*(s+1))
 def sigSquared(n,s):
@@ -24,7 +27,7 @@ def numberDistribution(x,sigma,MU):
     return(returnNumber)
 def hitModifier(theDC,theSave):
     return((theDC-theSave-1)/20)
-
+'''
 
 class DamagePlotter:
     def __init__(self,root,theFont):
