@@ -7,9 +7,8 @@ import diceCalculations
 from diceCalculations import *
 
 class DamagePlotter:
-    def __init__(self,root,theFont):
-        self.root = root
-        root.title('Predict Damage Output')
+    def __init__(self,parent,theFont):
+        self.root = parent
 
         self.DC_var = IntVar()
         self.SavingThrow = IntVar()
@@ -17,7 +16,7 @@ class DamagePlotter:
         self.SidedDice = IntVar()
         self.rollMode = StringVar()
 
-        inputFrame = customtkinter.CTkFrame(master=root)
+        inputFrame = customtkinter.CTkFrame(master=parent)
         DCinput = customtkinter.CTkEntry(inputFrame,placeholder_text='DC Input',textvariable=self.DC_var)
         SaveBonusInput = customtkinter.CTkEntry(inputFrame,placeholder_text='Save Throw Bonus',textvariable=self.SavingThrow)
         numberofDiceInput = customtkinter.CTkEntry(inputFrame,placeholder_text='Number of Dice',textvariable=self.DiceCount)
