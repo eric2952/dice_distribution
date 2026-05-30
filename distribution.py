@@ -2,8 +2,10 @@ import matplotlib.pyplot as plt
 from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
 import customtkinter as ctk
 import dmgPlotter
+import diceRoller
 from dmgPlotter import DamagePlotter
 from customtkinter import CTkTabview
+from diceRoller import theRoller
 
 darkblue='#274f58'
 rushred='#5c092d'
@@ -34,13 +36,13 @@ def main():
     frame1 = ctk.CTkFrame(tab1,width=winwidth,height=winheight)
     frame2 = ctk.CTkFrame(tab2,width=winwidth,height=winheight)
     frame3 = ctk.CTkFrame(tab3,width=winwidth,height=winheight)
-
     frame1.pack(fill='both')
     frame2.pack(fill='both')
     frame3.pack(fill='both')
 
     DamagePlotter(frame1,thefont)
-   
+    theRoller(frame2,thefont)
+
     root.mainloop()
 
 if __name__ == '__main__':
