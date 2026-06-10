@@ -14,4 +14,10 @@ COPY diceCalculations.py .
 
 COPY dmgPlotter.py .
 
+COPY diceRoller.py .
+
+COPY Images/ ./Images/
+
+COPY Animations/ ./Animations/
+
 CMD ["python3", "distribution.py"]

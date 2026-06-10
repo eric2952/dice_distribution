@@ -1,3 +1,6 @@
+import random
+import customtkinter
+''''dmgPlotter functions'''
 def MUn(n,s):
     return(.5*n*(s+1))
 def sigSquared(n,s):
@@ -8,3 +11,4 @@ def numberDistribution(x,sigma,MU):
     return(returnNumber)
 def hitModifier(theDC,theSave):
     return((theDC-theSave-1)/20)
+
