@@ -1,8 +1,6 @@
 import matplotlib.pyplot as plt
 from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
 import customtkinter as ctk
-import dmgPlotter
-import diceRoller
 from dmgPlotter import DamagePlotter
 from customtkinter import CTkTabview
 from diceRoller import theRoller
