@@ -28,7 +28,7 @@ def rolltheDice(theLabelArr,resultLabel,resultInfo):
             thisRoll = 0
             thisRoll = random.randint(1,diceTypes[i])
             diceTotal+= thisRoll
-            displayInfo+= f' d{diceTypes[i]} result: {thisRoll}'
+            displayInfo+= f' d{diceTypes[i]} result: {thisRoll}\n'
             j+=1
         i+=1
     resultLabel.configure(text=diceTotal)

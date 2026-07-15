@@ -1,0 +1,1 @@
+select * from characterDB cd WHERE cd.Character_Type = 'Player' OR  cd.Character_Type  = 'Antagonist' or cd.Character_Type = 'Neutral'

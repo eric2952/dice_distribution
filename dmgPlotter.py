@@ -3,7 +3,6 @@ from customtkinter import IntVar
 from customtkinter import StringVar
 import matplotlib.pyplot as plt
 from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
-import diceCalculations
 from diceCalculations import *
 
 class DamagePlotter:

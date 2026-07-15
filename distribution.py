@@ -1,9 +1,8 @@
-import matplotlib.pyplot as plt
-from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
 import customtkinter as ctk
 from dmgPlotter import DamagePlotter
 from customtkinter import CTkTabview
 from diceRoller import theRoller
+from characterManager import CharacterManagement
 
 darkblue='#274f58'
 rushred='#5c092d'
@@ -29,7 +28,7 @@ def main():
 
     tab1 = notebook.add('Damage Distribution')
     tab2 = notebook.add('Dice Roller')
-    tab3 = notebook.add('Initiative Tracker')
+    tab3 = notebook.add('Character Manager')
 
     frame1 = ctk.CTkFrame(tab1,width=winwidth,height=winheight)
     frame2 = ctk.CTkFrame(tab2,width=winwidth,height=winheight)
@@ -40,6 +39,7 @@ def main():
 
     DamagePlotter(frame1,thefont)
     theRoller(frame2,thefont)
+    CharacterManagement(frame3,thefont)
 
     root.mainloop()
 
