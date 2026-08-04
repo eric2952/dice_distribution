@@ -11,6 +11,8 @@ updateAbilityExtension = '/SQLStatements/updateAbility.sql'
 addSkillExtension = '/SQLStatements/addSkill.sql'
 SkillListExtension = '/SQLStatements/skillNameList.sql'
 updateSkillExtension = '/SQLStatements/updateSkill.sql'
+skillprogressionExtension = '/SQLStatements/grabSkillProgression.sql'
+updateskillprogressionExtension = '/SQLStatements/updateSkillprogression.sql'
 
 def grabScript(scriptExtension):
     with open(filepath + scriptExtension,"r",encoding="utf-8") as f:
@@ -88,7 +90,7 @@ def collectStatsUpdate(statEntryArray,CharacterMenu):
     statArray=[]
     for entry in statEntryArray:
         statArray.append(entry.get())
-    statArray.append(CharacterMenu.get())
+    statArray.append(CharacterMenu)
     print (statArray)
     character = tuple(statArray)
     update_Character(character)
@@ -122,3 +124,21 @@ def collectSkillStatsUpdate(statEntryArray,SkillMenu):
     statArray.append(SkillMenu.get())
     ability = tuple(statArray)
     update_Skill(ability)
+
+def generate_Skill_Progress_List(Character):
+    with sqlite3.connect(theDB) as conn:
+        cur = conn.cursor()
+        cur.execute(grabScript(skillprogressionExtension),(Character,))
+        statblocks = cur.fetchall()
+        return statblocks
+
+def skillProgressUpdate(labelArray,theLevelArray,theExpArray,CharacterName):
+    with sqlite3.connect(theDB) as conn:
+        cur = conn.cursor()
+        j = 0
+        for item in labelArray:
+            uniqueID = CharacterName + item.cget("text")
+            cur.execute(grabScript(updateskillprogressionExtension),(item.cget("text"),CharacterName,theLevelArray[j].get(),theExpArray[j].get(),uniqueID,item.cget("text"),CharacterName,theLevelArray[j].get(),theExpArray[j].get(),uniqueID))
+            j+=1
+            conn.commit()
+    print(f'stats for {CharacterName} committed to database.')

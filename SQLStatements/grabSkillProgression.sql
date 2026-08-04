@@ -1,0 +1,1 @@
+Select * from SkillProgress sp Where CharacterName = ?
